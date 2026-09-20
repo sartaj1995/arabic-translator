@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useState } from "react";
 import PlayButton from "./PlayButton";
 import type { UseTts } from "@/lib/tts";
+import { useCopy } from "@/lib/useCopy";
 import type { GenderAxis, SpeakResult } from "@/lib/types";
 
 const AXIS_LABEL: Record<GenderAxis, string> = {
@@ -127,34 +127,4 @@ export default function ArabicResult({
       ))}
     </div>
   );
-}
-
-/** Clipboard with a graceful path for non-secure contexts and old webviews. */
-function useCopy() {
-  const [copied, setCopied] = useState(false);
-
-  const copy = useCallback(async (text: string) => {
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        // Safari on http:// has no async clipboard; fall back to a temp node.
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        ta.setAttribute("readonly", "");
-        ta.style.position = "fixed";
-        ta.style.opacity = "0";
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-      }
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
-    } catch {
-      /* Copying is a convenience; a failure should not interrupt anything. */
-    }
-  }, []);
-
-  return { copied, copy };
 }

@@ -3,7 +3,7 @@
 export type Mode = "listen" | "speak";
 
 const TABS: { id: Mode; label: string; sub: string; enabled: boolean }[] = [
-  { id: "listen", label: "Listen", sub: "Arabic → English", enabled: false },
+  { id: "listen", label: "Listen", sub: "Arabic → English", enabled: true },
   { id: "speak", label: "Speak", sub: "English → Arabic", enabled: true },
 ];
 

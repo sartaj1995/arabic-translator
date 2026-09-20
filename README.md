@@ -14,7 +14,7 @@ in a Riyadh taxi, café or office.
 | Phase | Scope | State |
 | --- | --- | --- |
 | **1** | Project setup, PWA shell, **Speak** mode (English → Arabic) end to end | ✅ Done |
-| 2 | **Listen** mode (Arabic audio → English), push-to-talk, `/api/listen` | Not started |
+| **2** | **Listen** mode (Arabic audio → English), push-to-talk, `/api/listen` | ✅ Done |
 | 3 | Offline phrasebook (~80 phrases, IndexedDB), history, saved items | Not started |
 
 ---
@@ -80,11 +80,14 @@ app/
   page.tsx              Mode tab shell
   globals.css           Design tokens (high-contrast light theme, Arabic font stack)
   api/speak/route.ts    English → Arabic. Rate limited, validates input.
+  api/listen/route.ts   Arabic audio → English. Rate limited, size + confidence guards.
 lib/
   ai.ts                 ← ALL model calls. Swap providers by editing this file only.
   prompts.ts            ← ALL prompt text. Tune dialect here without touching logic.
   tts.ts                Browser speechSynthesis + Arabic voice selection
   dictation.ts          English dictation via SpeechRecognition (progressive enhancement)
+  audio.ts              Push-to-talk MediaRecorder hook
+  audioFormats.ts       Container negotiation + Gemini MIME normalisation (pure)
   rateLimit.ts          In-memory sliding window
   errors.ts             AppError + safe error responses
   types.ts              Shared contracts
@@ -118,6 +121,30 @@ public/
   Controls sit in the bottom third for one-handed use.
 
 ---
+
+## Listen mode (audio)
+
+Hold the big button, speak (or point the phone at whoever is speaking), release.
+The clip goes to `/api/listen`, which makes **one** multimodal Gemini call that
+transcribes and translates in a single step — there is no separate speech-to-text
+stage. English comes back first and largest, with the Arabic and transliteration
+below it for checking and learning.
+
+Recording is capped at 30 seconds and anything under 400ms is treated as an
+accidental tap. If the model reports confidence below 0.4 the app says it could
+not make out the audio rather than showing a confident-looking guess; between
+0.4 and 0.75 the result is shown with an "audio was unclear" flag.
+
+### The container problem
+
+`MediaRecorder` output is platform-specific and the type is probed at runtime,
+never hardcoded — Chrome and Android give WebM/Opus, iOS Safari gives MP4/AAC.
+
+There is a second, less obvious trap. **Gemini does not accept `audio/mp4`**,
+which is exactly what iOS produces. It does accept `audio/m4a`, and M4A is AAC
+in an MP4 container — the same bytes with a different label. `normaliseForGemini`
+in `lib/audioFormats.ts` handles the relabel (no transcoding), and it is applied
+on both the client and the server so a bad label cannot reach the API either way.
 
 ## Text to speech
 

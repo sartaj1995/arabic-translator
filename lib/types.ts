@@ -42,6 +42,17 @@ export interface SpeakResult {
   variants: GenderVariant[];
 }
 
+/**
+ * Confidence thresholds for Listen mode.
+ *
+ * Below MIN the model is telling us it could not make out the audio, and we
+ * refuse rather than show a confident-looking guess. Between MIN and LOW we
+ * show the result but flag it. Shared by the API route and the UI so the two
+ * can never drift apart.
+ */
+export const MIN_CONFIDENCE = 0.4;
+export const LOW_CONFIDENCE = 0.75;
+
 /** Response from /api/listen — Arabic audio in, English out. (Phase 2.) */
 export interface ListenResult {
   arabic: string;
