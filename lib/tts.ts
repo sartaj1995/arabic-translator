@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { pickArabicVoice } from "./voiceSelection";
 
 /**
  * Browser speechSynthesis, wrapped to survive the three things that reliably
@@ -32,38 +33,11 @@ export type TtsStatus =
   /** No speechSynthesis at all (old browser, or a locked-down webview). */
   | "unsupported";
 
-/**
- * Choose the best Arabic voice from the device's installed voices.
- *
- * TODO(human): implement the selection strategy.
- *
- * Context on what you are picking from — `voices` is whatever the device has,
- * and the shape varies a lot:
- *   iPhone   -> [{ name: "Majed",  lang: "ar-SA", localService: true }, ...]
- *   Android  -> [{ name: "Arabic Male", lang: "ar", localService: true }, ...]
- *   Chrome   -> [{ name: "Google العربية", lang: "ar", localService: false }, ...]
- *   Windows  -> [{ name: "Microsoft Naayf - Arabic (Saudi)", lang: "ar-SA" }, ...]
- *
- * Return the voice to use, or null if this device has none (which surfaces the
- * "no Arabic voice" message rather than reading Arabic in an English accent).
- *
- * Things worth weighing:
- *   - `lang` is the reliable signal; it may be "ar-SA", "ar_SA", "ar-EG", or
- *     bare "ar". A Saudi voice is ideal, any Arabic voice beats none.
- *   - `localService: true` voices work offline and start instantly; remote
- *     ones need network and lag. This app is used in taxis with bad signal.
- *   - Never fall through to a non-Arabic voice. Returning null is the correct
- *     answer when there is no Arabic voice — that is the whole point of this
- *     function.
- */
-export function pickArabicVoice(
-  voices: SpeechSynthesisVoice[],
-): SpeechSynthesisVoice | null {
-  // Placeholder so the app compiles and runs. Until this returns a voice, the
-  // UI correctly reports "No Arabic voice on this device". Delete both lines.
-  void voices;
-  return null;
-}
+// Voice ranking lives in its own dependency-free module so the policy can be
+// tested against synthetic device voice lists. See lib/voiceSelection.ts for
+// the scoring and the reasoning behind it. Re-exported here so callers still
+// have a single import for everything speech-related.
+export { pickArabicVoice };
 
 /* ------------------------------------------------------------------ *
  * Voice store. Module-scoped so every component shares one subscription
