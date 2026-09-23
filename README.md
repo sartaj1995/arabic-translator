@@ -220,6 +220,25 @@ problems are handled explicitly in `lib/tts.ts`:
    - **iOS:** Settings → Accessibility → Spoken Content → Voices → Arabic
    - **Android:** Settings → System → Languages & input → Text-to-speech output → install Arabic
 
+### Which voice gets picked
+
+Devices expose wildly different voice lists, so `lib/voiceSelection.ts` ranks
+them rather than looking for one name. Arabic is a hard gate — a non-Arabic
+voice can never be chosen, and returning nothing is the correct answer when the
+device has no Arabic voice.
+
+Among Arabic voices, the ranking is **offline-capable first, then closest
+accent**: Saudi > Gulf > unmarked `ar` > other regions. Offline capability
+outranks accent deliberately, because a remote voice in a taxi with no signal
+either lags badly or silently does nothing, while a local Egyptian-accented
+voice still produces Arabic a Riyadh driver understands. Lower `LOCAL_BONUS`
+below 100 to flip that.
+
+Two details that matter: `lang` may arrive as `ar-SA`, `ar_SA`, `ar-EG` or bare
+`ar`, all of which are handled; and a plain `startsWith("ar")` test is *wrong*,
+because `arc` is Aramaic and `arn` is Mapudungun — both would otherwise be
+chosen to read Arabic script.
+
 ---
 
 ## Testing the PWA locally
