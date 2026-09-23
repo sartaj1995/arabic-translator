@@ -9,7 +9,7 @@
  * deletes every cache that does not match, which is what evicts stale shells.
  */
 
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 const SHELL_CACHE = `riyadh-talk-shell-${CACHE_VERSION}`;
 const ASSET_CACHE = `riyadh-talk-assets-${CACHE_VERSION}`;
 
@@ -17,6 +17,9 @@ const ASSET_CACHE = `riyadh-talk-assets-${CACHE_VERSION}`;
 const SHELL_URLS = [
   "/",
   "/manifest.webmanifest",
+  // Precached, not just runtime-cached: the phrasebook is the one thing that
+  // has to work on a first offline launch.
+  "/phrasebook.json",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/icons/maskable-512.png",

@@ -10,16 +10,22 @@ import {
   useRecorder,
   type RecordedClip,
 } from "@/lib/audio";
-import { unlockSpeech, useTts } from "@/lib/tts";
+import type { NewEntry } from "@/lib/history";
+import { unlockSpeech, type UseTts } from "@/lib/tts";
 import { useOnline } from "@/lib/useOnline";
 import type { AppErrorCode, ApiErrorBody, ListenResult } from "@/lib/types";
 
-export default function ListenMode() {
+export default function ListenMode({
+  tts,
+  onRecord,
+}: {
+  tts: UseTts;
+  onRecord: (entry: NewEntry) => void;
+}) {
   const [result, setResult] = useState<ListenResult | null>(null);
   const [error, setError] = useState<UiError | null>(null);
   const [sending, setSending] = useState(false);
 
-  const tts = useTts();
   const online = useOnline();
 
   const fail = useCallback((code: AppErrorCode, message: string) => {
@@ -54,14 +60,21 @@ export default function ListenMode() {
           return;
         }
 
-        setResult((await res.json()) as ListenResult);
+        const data = (await res.json()) as ListenResult;
+        setResult(data);
+        onRecord({
+          mode: "listen",
+          english: data.english,
+          arabic: data.arabic,
+          transliteration: data.transliteration,
+        });
       } catch {
         fail("OFFLINE", "Could not reach the server.");
       } finally {
         setSending(false);
       }
     },
-    [fail],
+    [fail, onRecord],
   );
 
   const recorder = useRecorder({
