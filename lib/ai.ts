@@ -11,10 +11,20 @@ import type { SpeakResult, ListenResult, GenderVariant, Register } from "./types
  * lib/prompts.ts contains prompt text.
  */
 
-/* Floating aliases so the app tracks the current Flash model. Pin them in
- * .env.local if you want reproducible output. */
-const TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || "gemini-flash-latest";
-const AUDIO_MODEL = process.env.GEMINI_AUDIO_MODEL || "gemini-flash-latest";
+/**
+ * Pinned to a GA model on purpose.
+ *
+ * These previously defaulted to the floating alias "gemini-flash-latest",
+ * which appears in the SDK's typed model union but does not resolve on every
+ * API key — the deployed app returned UPSTREAM_ERROR on every request. A type
+ * listing known model ids is not a guarantee that a given key can reach them,
+ * so the default is now a model that is broadly available, and upgrading is an
+ * explicit env change rather than something that happens silently.
+ *
+ * gemini-2.5-flash is multimodal, so it serves both the text and audio calls.
+ */
+const TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || "gemini-2.5-flash";
+const AUDIO_MODEL = process.env.GEMINI_AUDIO_MODEL || "gemini-2.5-flash";
 const TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS || 20_000);
 
 function client(): GoogleGenAI {
@@ -152,7 +162,20 @@ async function generateJson<T>(opts: {
         throw new AppError("NO_API_KEY", "Gemini rejected the API key.", 500);
       }
       console.error("[ai] upstream failure:", msg);
-      // Surface the model name — the usual cause is a model the key cannot use.
+
+      // A model this key cannot reach is the single most likely misconfig, and
+      // it is indistinguishable from a real outage unless we say so. Give it
+      // its own code so the UI can name the env var to change.
+      if (/404|not[ _]?found|does not exist|is not supported/i.test(msg)) {
+        throw new AppError(
+          "MODEL_NOT_FOUND",
+          `Your API key cannot use "${opts.model}".`,
+          502,
+        );
+      }
+
+      // Surface the model name regardless — it is the variable most likely
+      // to be at fault.
       throw new AppError(
         "UPSTREAM_ERROR",
         `Gemini call failed (model: ${opts.model}).`,

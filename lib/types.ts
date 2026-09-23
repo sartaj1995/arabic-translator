@@ -70,6 +70,7 @@ export type AppErrorCode =
   | "RATE_LIMITED"
   | "NO_API_KEY"
   | "UPSTREAM_ERROR"
+  | "MODEL_NOT_FOUND"
   | "TIMEOUT"
   | "BAD_MODEL_JSON"
   | "EMPTY_INPUT"
