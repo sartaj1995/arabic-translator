@@ -25,6 +25,10 @@ const COPY: Partial<Record<AppErrorCode, { title: string; hint?: string }>> = {
     title: "The translation service failed",
     hint: "Usually temporary. Try again in a moment.",
   },
+  MODEL_NOT_FOUND: {
+    title: "That model is not available on your API key",
+    hint: "Set GEMINI_TEXT_MODEL (and GEMINI_AUDIO_MODEL) to a model your key can use, then redeploy.",
+  },
   TIMEOUT: {
     title: "That took too long",
     hint: "Check your signal and try again.",

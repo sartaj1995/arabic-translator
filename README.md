@@ -49,16 +49,42 @@ use requires — no billing setup needed.
 **Restart `npm run dev` after editing `.env.local`.** Next.js only reads
 environment variables at boot.
 
+#### If your key starts with `AQ.` rather than `AIza`
+
+Both are valid. Google AI Studio began issuing keys with an **`AQ.` prefix** in
+mid-2026; the older `AIza` format is still what Google Cloud Console hands out.
+
+The two are **not** interchangeable. `AQ.` keys authenticate only via the
+`x-goog-api-key` **header** — anything passing the key as a `?key=` query
+parameter gets a 401. That is why some third-party tools reject them.
+
+**This app works with either**, because `lib/ai.ts` uses the official
+`@google/genai` SDK, which sets the header. No configuration needed.
+
+If an `AQ.` key is rejected anyway, generate an `AIza` one instead: Google Cloud
+Console → APIs & Services → Credentials → Create credentials → API key, with the
+*Generative Language API* enabled on that project.
+
 ### Optional environment variables
 
 All have working defaults; see `.env.example`.
 
-- `GEMINI_TEXT_MODEL` — model for Speak mode. Defaults to `gemini-flash-latest`,
-  a floating alias that tracks the current Flash release. **If you get a
-  `UPSTREAM_ERROR` mentioning the model name, pin it instead** —
-  `GEMINI_TEXT_MODEL=gemini-2.5-flash` is the safe fallback.
-- `GEMINI_AUDIO_MODEL` — model for Listen mode (Phase 2). Must accept audio input.
+- `GEMINI_TEXT_MODEL` — model for Speak mode. Defaults to `gemini-2.5-flash`.
+- `GEMINI_AUDIO_MODEL` — model for Listen mode. Must accept audio input.
+  Defaults to `gemini-2.5-flash`, which is multimodal.
 - `AI_TIMEOUT_MS` — abort a model call after this long. Default `20000`.
+
+Both model defaults are **pinned to a GA model on purpose**. An earlier version
+defaulted to the floating alias `gemini-flash-latest`, which does not resolve on
+every API key and left the deployed app failing on every request. If you want a
+newer model, set it explicitly.
+
+If the app reports **"That model is not available on your API key"**, list what
+your key can actually reach and pick one:
+
+```bash
+curl -s -H "x-goog-api-key: YOUR_KEY" "https://generativelanguage.googleapis.com/v1beta/models" | grep -o '"name": "[^"]*"'
+```
 
 ### Verifying the key works
 
