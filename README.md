@@ -15,7 +15,7 @@ in a Riyadh taxi, café or office.
 | --- | --- | --- |
 | **1** | Project setup, PWA shell, **Speak** mode (English → Arabic) end to end | ✅ Done |
 | **2** | **Listen** mode (Arabic audio → English), push-to-talk, `/api/listen` | ✅ Done |
-| 3 | Offline phrasebook (~80 phrases, IndexedDB), history, saved items | Not started |
+| **3** | Offline phrasebook (96 phrases, IndexedDB), history, saved items | ✅ Done |
 
 ---
 
@@ -103,7 +103,7 @@ A working key returns JSON with `arabic`, `transliteration`, `literal_gloss`,
 ```
 app/
   layout.tsx            PWA metadata, manifest link, viewport/safe-area setup
-  page.tsx              Mode tab shell
+  page.tsx              App shell: bottom nav, shared TTS + history, offline switch
   globals.css           Design tokens (high-contrast light theme, Arabic font stack)
   api/speak/route.ts    English → Arabic. Rate limited, validates input.
   api/listen/route.ts   Arabic audio → English. Rate limited, size + confidence guards.
@@ -114,6 +114,9 @@ lib/
   dictation.ts          English dictation via SpeechRecognition (progressive enhancement)
   audio.ts              Push-to-talk MediaRecorder hook
   audioFormats.ts       Container negotiation + Gemini MIME normalisation (pure)
+  db.ts                 Minimal IndexedDB wrapper (no dependencies)
+  phrasebook.ts         Cache-first phrasebook loader + search
+  history.ts            Last 50 translations, plus an exempt Saved list
   rateLimit.ts          In-memory sliding window
   errors.ts             AppError + safe error responses
   types.ts              Shared contracts
@@ -121,6 +124,7 @@ components/             UI
 public/
   manifest.webmanifest  PWA manifest
   sw.js                 Hand-written service worker
+  phrasebook.json       96 Riyadh phrases in 7 categories
   icons/                Generated PNG icon set
 ```
 
@@ -172,6 +176,35 @@ in an MP4 container — the same bytes with a different label. `normaliseForGemi
 in `lib/audioFormats.ts` handles the relabel (no transcoding), and it is applied
 on both the client and the server so a bad label cannot reach the API either way.
 
+## Offline phrasebook
+
+96 everyday Riyadh phrases across seven categories — greetings, taxi, coffee and
+food, shopping, numbers, emergencies, and office small talk. Searchable across
+English, Arabic script and transliteration at once, with a play button on every
+entry.
+
+Search ignores apostrophes, so typing `siruh` finds `kam si'ruh?` — you do not
+have to guess where the ayns go. Multiple words narrow rather than widen.
+
+**It works with zero network.** The phrasebook is precached by the service worker
+and stored in IndexedDB on first load, then read from IndexedDB *before* anything
+touches the network. Going offline switches the app to phrasebook-only: a banner
+appears, Listen and Speak grey out in the nav, and the phrasebook stays fully
+usable. Reconnecting returns you to whichever mode you were in.
+
+To edit the phrases, change `public/phrasebook.json` and bump its `version` —
+clients refresh their cached copy when the version changes.
+
+## History and saved
+
+The last 50 translations are kept in IndexedDB, newest first, tagged by mode and
+with a relative timestamp. Tap any row to copy the Arabic, or use the play button
+to replay it.
+
+The star pins an item to the **Saved** list. Saved items are **exempt from the
+50-item cap** and survive "Clear history" — otherwise starring something would be
+meaningless the moment fifty more translations pushed it out.
+
 ## Text to speech
 
 Uses the browser's built-in `speechSynthesis` — no paid TTS API. Three known
@@ -200,7 +233,11 @@ npm run build && npm start
 
 Then open <http://localhost:3000>, and use DevTools → Application → Service
 Workers to confirm it registered. Toggle **Offline** there to test offline
-behaviour.
+behaviour — you should get the offline banner, a greyed-out Listen and Speak,
+and a fully working phrasebook.
+
+DevTools → Application → IndexedDB → `riyadh-talk` shows the two stores: `kv`
+(the cached phrasebook) and `history`.
 
 ---
 

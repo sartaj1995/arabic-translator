@@ -6,7 +6,8 @@ import ErrorBanner, { type UiError } from "./ErrorBanner";
 import PlayButton from "./PlayButton";
 import Spinner from "./Spinner";
 import { useDictation } from "@/lib/dictation";
-import { unlockSpeech, useTts } from "@/lib/tts";
+import type { NewEntry } from "@/lib/history";
+import { unlockSpeech, type UseTts } from "@/lib/tts";
 import { useOnline } from "@/lib/useOnline";
 import type { AppErrorCode, ApiErrorBody, SpeakResult } from "@/lib/types";
 
@@ -17,14 +18,19 @@ const EXAMPLES = [
   "I'm running ten minutes late",
 ];
 
-export default function SpeakMode() {
+export default function SpeakMode({
+  tts,
+  onRecord,
+}: {
+  tts: UseTts;
+  onRecord: (entry: NewEntry) => void;
+}) {
   const [text, setText] = useState("");
   const [result, setResult] = useState<SpeakResult | null>(null);
   const [error, setError] = useState<UiError | null>(null);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const tts = useTts();
   const online = useOnline();
 
   const fail = useCallback((code: AppErrorCode, message: string) => {
@@ -62,7 +68,14 @@ export default function SpeakMode() {
           return;
         }
 
-        setResult((await res.json()) as SpeakResult);
+        const data = (await res.json()) as SpeakResult;
+        setResult(data);
+        onRecord({
+          mode: "speak",
+          english: value,
+          arabic: data.arabic,
+          transliteration: data.transliteration,
+        });
       } catch {
         // fetch() only rejects on transport failure, so this really is the network.
         fail("OFFLINE", "Could not reach the server.");
@@ -70,7 +83,7 @@ export default function SpeakMode() {
         setLoading(false);
       }
     },
-    [fail],
+    [fail, onRecord],
   );
 
   const dictation = useDictation({
