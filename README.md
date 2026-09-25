@@ -1,4 +1,4 @@
-# Riyadh Talk
+# Arabic Translator
 
 A two-way English ↔ **Saudi Najdi Arabic** translator, built as a mobile-first
 PWA for daily life in Riyadh. Installs to your phone's home screen and runs

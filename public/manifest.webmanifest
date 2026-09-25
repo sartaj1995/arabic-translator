@@ -1,6 +1,6 @@
 {
-  "name": "Riyadh Talk",
-  "short_name": "Riyadh",
+  "name": "Arabic Translator",
+  "short_name": "Arabic Translator",
   "description": "Two-way English and Saudi Najdi Arabic translator for everyday life in Riyadh.",
   "start_url": "/",
   "scope": "/",
