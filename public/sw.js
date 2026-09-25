@@ -9,7 +9,7 @@
  * deletes every cache that does not match, which is what evicts stale shells.
  */
 
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
 const SHELL_CACHE = `riyadh-talk-shell-${CACHE_VERSION}`;
 const ASSET_CACHE = `riyadh-talk-assets-${CACHE_VERSION}`;
 

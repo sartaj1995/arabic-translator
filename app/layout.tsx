@@ -3,14 +3,14 @@ import "./globals.css";
 import ServiceWorkerRegistrar from "@/components/ServiceWorkerRegistrar";
 
 export const metadata: Metadata = {
-  title: "Riyadh Talk",
+  title: "Arabic Translator",
   description:
     "Two-way English ↔ Saudi Najdi Arabic translator for everyday life in Riyadh.",
   manifest: "/manifest.webmanifest",
-  applicationName: "Riyadh Talk",
+  applicationName: "Arabic Translator",
   appleWebApp: {
     capable: true,
-    title: "Riyadh Talk",
+    title: "Arabic Translator",
     // "default" keeps the status bar dark-on-light, matching the white shell.
     statusBarStyle: "default",
   },
