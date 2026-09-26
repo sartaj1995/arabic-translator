@@ -1,139 +1,1318 @@
 {
-  "version": 2,
+  "version": 3,
   "note": "Saudi Najdi Arabic as spoken in Riyadh. Transliteration is plain phonetic: g for ق, ' for ع, doubled long vowels.",
   "categories": [
-    { "id": "greetings", "label": "Greetings & politeness" },
-    { "id": "taxi", "label": "Taxi & directions" },
-    { "id": "food", "label": "Coffee & food" },
-    { "id": "shopping", "label": "Shopping & prices" },
-    { "id": "colours", "label": "Colours" },
-    { "id": "numbers", "label": "Numbers" },
-    { "id": "emergency", "label": "Emergencies" },
-    { "id": "office", "label": "Office small talk" }
+    {
+      "id": "greetings",
+      "label": "Greetings & politeness"
+    },
+    {
+      "id": "taxi",
+      "label": "Taxi & directions"
+    },
+    {
+      "id": "food",
+      "label": "Coffee & food"
+    },
+    {
+      "id": "shopping",
+      "label": "Shopping & prices"
+    },
+    {
+      "id": "colours",
+      "label": "Colours"
+    },
+    {
+      "id": "numbers",
+      "label": "Numbers"
+    },
+    {
+      "id": "emergency",
+      "label": "Emergencies"
+    },
+    {
+      "id": "office",
+      "label": "Office small talk"
+    },
+    {
+      "id": "cognates",
+      "label": "Words you already know"
+    }
   ],
   "phrases": [
-    { "id": "g01", "category": "greetings", "english": "Hello (peace be upon you)", "arabic": "السلام عليكم", "transliteration": "as-salaam 'alaykum" },
-    { "id": "g02", "category": "greetings", "english": "And peace upon you (the reply)", "arabic": "وعليكم السلام", "transliteration": "wa 'alaykum as-salaam" },
-    { "id": "g03", "category": "greetings", "english": "Good morning", "arabic": "صباح الخير", "transliteration": "sabaah al-khair" },
-    { "id": "g04", "category": "greetings", "english": "Good morning (the reply)", "arabic": "صباح النور", "transliteration": "sabaah an-noor" },
-    { "id": "g05", "category": "greetings", "english": "How are you?", "arabic": "كيف حالك؟", "transliteration": "keef haalak?" },
-    { "id": "g16", "category": "greetings", "english": "Good evening", "arabic": "مساء الخير", "transliteration": "masaa al-khair" },
-    { "id": "g17", "category": "greetings", "english": "Good evening (the reply)", "arabic": "مساء النور", "transliteration": "masaa an-noor" },
-    { "id": "g18", "category": "greetings", "english": "Good night", "arabic": "تصبح على خير", "transliteration": "tisbah 'ala khair" },
-    { "id": "g19", "category": "greetings", "english": "Good night (the reply)", "arabic": "وأنت من أهله", "transliteration": "wa inta min ahluh" },
-    { "id": "g06", "category": "greetings", "english": "Good, praise God", "arabic": "بخير الحمد لله", "transliteration": "bi-khair al-hamdu lillah" },
-    { "id": "g07", "category": "greetings", "english": "Welcome", "arabic": "حياك الله", "transliteration": "hayyaak allah" },
-    { "id": "g08", "category": "greetings", "english": "Please / excuse me", "arabic": "لو سمحت", "transliteration": "law samaht" },
-    { "id": "g09", "category": "greetings", "english": "Thank you (may God give you wellness)", "arabic": "الله يعطيك العافية", "transliteration": "allah ya'teek al-'afya" },
-    { "id": "g10", "category": "greetings", "english": "With pleasure / you're welcome", "arabic": "على خشمي", "transliteration": "'ala khashmi" },
-    { "id": "g11", "category": "greetings", "english": "Consider it done", "arabic": "أبشر", "transliteration": "abshir" },
-    { "id": "g12", "category": "greetings", "english": "Sorry", "arabic": "آسف", "transliteration": "aasif" },
-    { "id": "g13", "category": "greetings", "english": "No problem", "arabic": "ما فيه مشكلة", "transliteration": "ma feeh mushkila" },
-    { "id": "g14", "category": "greetings", "english": "Goodbye", "arabic": "مع السلامة", "transliteration": "ma' as-salaama" },
-    { "id": "g15", "category": "greetings", "english": "God willing", "arabic": "إن شاء الله", "transliteration": "in shaa allah" },
-
-    { "id": "t01", "category": "taxi", "english": "Take me to...", "arabic": "وديني إلى", "transliteration": "waddeeni ila" },
-    { "id": "t02", "category": "taxi", "english": "Straight ahead", "arabic": "على طول", "transliteration": "'ala tool" },
-    { "id": "t03", "category": "taxi", "english": "Turn right", "arabic": "لف يمين", "transliteration": "liff yameen" },
-    { "id": "t04", "category": "taxi", "english": "Turn left", "arabic": "لف يسار", "transliteration": "liff yasaar" },
-    { "id": "t05", "category": "taxi", "english": "Stop here", "arabic": "وقف هنا", "transliteration": "waggif hina" },
-    { "id": "t06", "category": "taxi", "english": "At the roundabout", "arabic": "عند الدوار", "transliteration": "'ind ad-dawwaar" },
-    { "id": "t07", "category": "taxi", "english": "At the traffic light", "arabic": "عند الإشارة", "transliteration": "'ind al-ishaara" },
-    { "id": "t08", "category": "taxi", "english": "How long will it take?", "arabic": "كم ياخذ وقت؟", "transliteration": "kam yaakhudh wagt?" },
-    { "id": "t09", "category": "taxi", "english": "Use the meter please", "arabic": "شغل العداد لو سمحت", "transliteration": "shaghghil al-'addaad law samaht" },
-    { "id": "t10", "category": "taxi", "english": "I'm in a hurry", "arabic": "أنا مستعجل", "transliteration": "ana musta'jil" },
-    { "id": "t11", "category": "taxi", "english": "Here is fine", "arabic": "هنا زين", "transliteration": "hina zain" },
-    { "id": "t12", "category": "taxi", "english": "Do you know this address?", "arabic": "تعرف هذا العنوان؟", "transliteration": "ta'rif haadha al-'unwaan?" },
-    { "id": "t13", "category": "taxi", "english": "To the airport", "arabic": "إلى المطار", "transliteration": "ila al-mataar" },
-    { "id": "t14", "category": "taxi", "english": "Wait for me five minutes", "arabic": "انتظرني خمس دقايق", "transliteration": "intathirni khams dagaayig" },
-
-    { "id": "f01", "category": "food", "english": "Arabic coffee please", "arabic": "قهوة عربية لو سمحت", "transliteration": "gahwa 'arabiya law samaht" },
-    { "id": "f02", "category": "food", "english": "A cappuccino", "arabic": "كابتشينو", "transliteration": "kabitsheeno" },
-    { "id": "f03", "category": "food", "english": "Without sugar", "arabic": "بدون سكر", "transliteration": "bidoon sukkar" },
-    { "id": "f04", "category": "food", "english": "A little sugar", "arabic": "سكر شوي", "transliteration": "sukkar shway" },
-    { "id": "f05", "category": "food", "english": "Is this spicy?", "arabic": "هذا حار؟", "transliteration": "haadha haarr?" },
-    { "id": "f06", "category": "food", "english": "I don't eat meat", "arabic": "ما آكل لحم", "transliteration": "ma aakul lahm" },
-    { "id": "f07", "category": "food", "english": "The bill please", "arabic": "الحساب لو سمحت", "transliteration": "al-hisaab law samaht" },
-    { "id": "f08", "category": "food", "english": "Takeaway", "arabic": "سفري", "transliteration": "safari" },
-    { "id": "f09", "category": "food", "english": "Eating in", "arabic": "هنا", "transliteration": "hina" },
-    { "id": "f10", "category": "food", "english": "Water please", "arabic": "موية لو سمحت", "transliteration": "mayya law samaht" },
-    { "id": "f11", "category": "food", "english": "That was delicious", "arabic": "كان لذيذ", "transliteration": "kaan ladheedh" },
-    { "id": "f12", "category": "food", "english": "I'm full", "arabic": "شبعت", "transliteration": "shabi't" },
-    { "id": "f13", "category": "food", "english": "A table for two?", "arabic": "طاولة لاثنين؟", "transliteration": "taawla lathnain?" },
-    { "id": "f14", "category": "food", "english": "What do you recommend?", "arabic": "وش تنصحني؟", "transliteration": "wesh tinsahni?" },
-
-    { "id": "s01", "category": "shopping", "english": "How much is this?", "arabic": "كم سعره؟", "transliteration": "kam si'ruh?" },
-    { "id": "s02", "category": "shopping", "english": "That's expensive", "arabic": "غالي", "transliteration": "ghaali" },
-    { "id": "s03", "category": "shopping", "english": "Can you make it cheaper?", "arabic": "ما فيه تخفيض؟", "transliteration": "ma feeh takhfeed?" },
-    { "id": "s04", "category": "shopping", "english": "I'll take it", "arabic": "آخذه", "transliteration": "aakhudhuh" },
-    { "id": "s05", "category": "shopping", "english": "Another colour?", "arabic": "فيه لون ثاني؟", "transliteration": "feeh loon thaani?" },
-    { "id": "s06", "category": "shopping", "english": "What size?", "arabic": "أي مقاس؟", "transliteration": "ayy magaas?" },
-    { "id": "s07", "category": "shopping", "english": "Can I pay by card?", "arabic": "أقدر أدفع بالبطاقة؟", "transliteration": "agdar adfa' bil-bitaaga?" },
-    { "id": "s08", "category": "shopping", "english": "Just looking, thanks", "arabic": "أشوف بس", "transliteration": "ashoof bas" },
-    { "id": "s09", "category": "shopping", "english": "Where can I find...?", "arabic": "وين ألقى", "transliteration": "ween alga" },
-    { "id": "s10", "category": "shopping", "english": "Do you have a bag?", "arabic": "عندك كيس؟", "transliteration": "'indak kees?" },
-    { "id": "s11", "category": "shopping", "english": "Is there a discount?", "arabic": "فيه خصم؟", "transliteration": "feeh khasm?" },
-    { "id": "s12", "category": "shopping", "english": "I'll think about it", "arabic": "بفكر فيه", "transliteration": "bafakkir feeh" },
-
-    { "id": "c01", "category": "colours", "english": "White", "arabic": "أبيض", "transliteration": "abyad" },
-    { "id": "c02", "category": "colours", "english": "Black", "arabic": "أسود", "transliteration": "aswad" },
-    { "id": "c03", "category": "colours", "english": "Red", "arabic": "أحمر", "transliteration": "ahmar" },
-    { "id": "c04", "category": "colours", "english": "Blue", "arabic": "أزرق", "transliteration": "azrag" },
-    { "id": "c05", "category": "colours", "english": "Green", "arabic": "أخضر", "transliteration": "akhdar" },
-    { "id": "c06", "category": "colours", "english": "Yellow", "arabic": "أصفر", "transliteration": "asfar" },
-    { "id": "c07", "category": "colours", "english": "Brown", "arabic": "بني", "transliteration": "bunni" },
-    { "id": "c08", "category": "colours", "english": "Grey", "arabic": "رمادي", "transliteration": "ramaadi" },
-    { "id": "c09", "category": "colours", "english": "Orange", "arabic": "برتقالي", "transliteration": "burtugaali" },
-    { "id": "c10", "category": "colours", "english": "Pink", "arabic": "وردي", "transliteration": "wardi" },
-    { "id": "c11", "category": "colours", "english": "Purple", "arabic": "بنفسجي", "transliteration": "banafsaji" },
-    { "id": "c12", "category": "colours", "english": "Gold", "arabic": "ذهبي", "transliteration": "dhahabi" },
-    { "id": "c13", "category": "colours", "english": "Silver", "arabic": "فضي", "transliteration": "fiddi" },
-    { "id": "c14", "category": "colours", "english": "Dark (shade)", "arabic": "غامق", "transliteration": "ghaamig" },
-    { "id": "c15", "category": "colours", "english": "Light (shade)", "arabic": "فاتح", "transliteration": "faatih" },
-    { "id": "c16", "category": "colours", "english": "What colour is it?", "arabic": "وش لونه؟", "transliteration": "wesh loonuh?" },
-
-    { "id": "n01", "category": "numbers", "english": "One", "arabic": "واحد", "transliteration": "waahid" },
-    { "id": "n02", "category": "numbers", "english": "Two", "arabic": "اثنين", "transliteration": "ithnain" },
-    { "id": "n03", "category": "numbers", "english": "Three", "arabic": "ثلاثة", "transliteration": "thalaatha" },
-    { "id": "n04", "category": "numbers", "english": "Four", "arabic": "أربعة", "transliteration": "arba'a" },
-    { "id": "n05", "category": "numbers", "english": "Five", "arabic": "خمسة", "transliteration": "khamsa" },
-    { "id": "n06", "category": "numbers", "english": "Six", "arabic": "ستة", "transliteration": "sitta" },
-    { "id": "n07", "category": "numbers", "english": "Seven", "arabic": "سبعة", "transliteration": "sab'a" },
-    { "id": "n08", "category": "numbers", "english": "Eight", "arabic": "ثمانية", "transliteration": "thamaanya" },
-    { "id": "n09", "category": "numbers", "english": "Nine", "arabic": "تسعة", "transliteration": "tis'a" },
-    { "id": "n10", "category": "numbers", "english": "Ten", "arabic": "عشرة", "transliteration": "'ashara" },
-    { "id": "n11", "category": "numbers", "english": "Twenty", "arabic": "عشرين", "transliteration": "'ishreen" },
-    { "id": "n12", "category": "numbers", "english": "Fifty", "arabic": "خمسين", "transliteration": "khamseen" },
-    { "id": "n13", "category": "numbers", "english": "One hundred", "arabic": "مية", "transliteration": "miyya" },
-    { "id": "n14", "category": "numbers", "english": "Half", "arabic": "نص", "transliteration": "nuss" },
-    { "id": "n15", "category": "numbers", "english": "Riyals", "arabic": "ريال", "transliteration": "riyaal" },
-
-    { "id": "e01", "category": "emergency", "english": "Help me!", "arabic": "ساعدوني", "transliteration": "saa'idooni" },
-    { "id": "e02", "category": "emergency", "english": "Call an ambulance", "arabic": "اتصل بالإسعاف", "transliteration": "ittasil bil-is'aaf" },
-    { "id": "e03", "category": "emergency", "english": "Call the police", "arabic": "اتصل بالشرطة", "transliteration": "ittasil bish-shurta" },
-    { "id": "e04", "category": "emergency", "english": "I need a doctor", "arabic": "أبغى دكتور", "transliteration": "abgha doktoor" },
-    { "id": "e05", "category": "emergency", "english": "I'm sick", "arabic": "أنا مريض", "transliteration": "ana mareed" },
-    { "id": "e06", "category": "emergency", "english": "Where is the hospital?", "arabic": "وين المستشفى؟", "transliteration": "ween al-mustashfa?" },
-    { "id": "e07", "category": "emergency", "english": "Where is the nearest pharmacy?", "arabic": "وين أقرب صيدلية؟", "transliteration": "ween agrab saydaliyya?" },
-    { "id": "e08", "category": "emergency", "english": "I lost my phone", "arabic": "ضاع جوالي", "transliteration": "daa' jawwaali" },
-    { "id": "e09", "category": "emergency", "english": "I lost my passport", "arabic": "ضاع جوازي", "transliteration": "daa' jawaazi" },
-    { "id": "e10", "category": "emergency", "english": "It hurts here", "arabic": "يوجعني هنا", "transliteration": "yooja'ni hina" },
-    { "id": "e11", "category": "emergency", "english": "I'm allergic to...", "arabic": "عندي حساسية من", "transliteration": "'indi hasaasiya min" },
-    { "id": "e12", "category": "emergency", "english": "I don't feel well", "arabic": "ما أنا بخير", "transliteration": "ma ana bi-khair" },
-    { "id": "e13", "category": "emergency", "english": "Please call this number", "arabic": "اتصل بهذا الرقم لو سمحت", "transliteration": "ittasil bi-haadha ar-ragam law samaht" },
-
-    { "id": "o01", "category": "office", "english": "Good morning, everyone", "arabic": "صباح الخير على الجميع", "transliteration": "sabaah al-khair 'ala al-jamee'" },
-    { "id": "o02", "category": "office", "english": "How was your weekend?", "arabic": "كيف كانت الإجازة؟", "transliteration": "keef kaanat al-ijaaza?" },
-    { "id": "o03", "category": "office", "english": "I have a meeting", "arabic": "عندي اجتماع", "transliteration": "'indi ijtimaa'" },
-    { "id": "o04", "category": "office", "english": "Can we talk later?", "arabic": "نتكلم بعدين؟", "transliteration": "nitkallam ba'dain?" },
-    { "id": "o05", "category": "office", "english": "I'll send it to you", "arabic": "برسله لك", "transliteration": "barsiluh lak" },
-    { "id": "o06", "category": "office", "english": "Sorry, I'm late", "arabic": "آسف تأخرت", "transliteration": "aasif ta'akhkhart" },
-    { "id": "o07", "category": "office", "english": "Take your time", "arabic": "على راحتك", "transliteration": "'ala raahtak" },
-    { "id": "o08", "category": "office", "english": "I didn't understand", "arabic": "ما فهمت", "transliteration": "ma fihimt" },
-    { "id": "o09", "category": "office", "english": "Can you repeat that?", "arabic": "ممكن تعيد؟", "transliteration": "mumkin t'eed?" },
-    { "id": "o10", "category": "office", "english": "Do you speak English?", "arabic": "تتكلم إنجليزي؟", "transliteration": "titkallam ingileezi?" },
-    { "id": "o11", "category": "office", "english": "I'm still learning Arabic", "arabic": "لسه أتعلم عربي", "transliteration": "lissa at'allam 'arabi" },
-    { "id": "o12", "category": "office", "english": "Speak slowly please", "arabic": "تكلم بالراحة لو سمحت", "transliteration": "tkallam bir-raaha law samaht" },
-    { "id": "o13", "category": "office", "english": "See you tomorrow", "arabic": "أشوفك بكرة", "transliteration": "ashoofak bukra" }
+    {
+      "id": "g01",
+      "category": "greetings",
+      "english": "Hello (peace be upon you)",
+      "arabic": "السلام عليكم",
+      "transliteration": "as-salaam 'alaykum"
+    },
+    {
+      "id": "g02",
+      "category": "greetings",
+      "english": "And peace upon you (the reply)",
+      "arabic": "وعليكم السلام",
+      "transliteration": "wa 'alaykum as-salaam"
+    },
+    {
+      "id": "g03",
+      "category": "greetings",
+      "english": "Good morning",
+      "arabic": "صباح الخير",
+      "transliteration": "sabaah al-khair"
+    },
+    {
+      "id": "g04",
+      "category": "greetings",
+      "english": "Good morning (the reply)",
+      "arabic": "صباح النور",
+      "transliteration": "sabaah an-noor"
+    },
+    {
+      "id": "g05",
+      "category": "greetings",
+      "english": "How are you?",
+      "arabic": "كيف حالك؟",
+      "transliteration": "keef haalak?"
+    },
+    {
+      "id": "g16",
+      "category": "greetings",
+      "english": "Good evening",
+      "arabic": "مساء الخير",
+      "transliteration": "masaa al-khair"
+    },
+    {
+      "id": "g17",
+      "category": "greetings",
+      "english": "Good evening (the reply)",
+      "arabic": "مساء النور",
+      "transliteration": "masaa an-noor"
+    },
+    {
+      "id": "g18",
+      "category": "greetings",
+      "english": "Good night",
+      "arabic": "تصبح على خير",
+      "transliteration": "tisbah 'ala khair"
+    },
+    {
+      "id": "g19",
+      "category": "greetings",
+      "english": "Good night (the reply)",
+      "arabic": "وأنت من أهله",
+      "transliteration": "wa inta min ahluh"
+    },
+    {
+      "id": "g06",
+      "category": "greetings",
+      "english": "Good, praise God",
+      "arabic": "بخير الحمد لله",
+      "transliteration": "bi-khair al-hamdu lillah"
+    },
+    {
+      "id": "g07",
+      "category": "greetings",
+      "english": "Welcome",
+      "arabic": "حياك الله",
+      "transliteration": "hayyaak allah"
+    },
+    {
+      "id": "g08",
+      "category": "greetings",
+      "english": "Please / excuse me",
+      "arabic": "لو سمحت",
+      "transliteration": "law samaht"
+    },
+    {
+      "id": "g09",
+      "category": "greetings",
+      "english": "Thank you (may God give you wellness)",
+      "arabic": "الله يعطيك العافية",
+      "transliteration": "allah ya'teek al-'afya"
+    },
+    {
+      "id": "g10",
+      "category": "greetings",
+      "english": "With pleasure / you're welcome",
+      "arabic": "على خشمي",
+      "transliteration": "'ala khashmi"
+    },
+    {
+      "id": "g11",
+      "category": "greetings",
+      "english": "Consider it done",
+      "arabic": "أبشر",
+      "transliteration": "abshir"
+    },
+    {
+      "id": "g12",
+      "category": "greetings",
+      "english": "Sorry",
+      "arabic": "آسف",
+      "transliteration": "aasif"
+    },
+    {
+      "id": "g13",
+      "category": "greetings",
+      "english": "No problem",
+      "arabic": "ما فيه مشكلة",
+      "transliteration": "ma feeh mushkila"
+    },
+    {
+      "id": "g14",
+      "category": "greetings",
+      "english": "Goodbye",
+      "arabic": "مع السلامة",
+      "transliteration": "ma' as-salaama"
+    },
+    {
+      "id": "g15",
+      "category": "greetings",
+      "english": "God willing",
+      "arabic": "إن شاء الله",
+      "transliteration": "in shaa allah"
+    },
+    {
+      "id": "t01",
+      "category": "taxi",
+      "english": "Take me to...",
+      "arabic": "وديني إلى",
+      "transliteration": "waddeeni ila"
+    },
+    {
+      "id": "t02",
+      "category": "taxi",
+      "english": "Straight ahead",
+      "arabic": "على طول",
+      "transliteration": "'ala tool"
+    },
+    {
+      "id": "t03",
+      "category": "taxi",
+      "english": "Turn right",
+      "arabic": "لف يمين",
+      "transliteration": "liff yameen"
+    },
+    {
+      "id": "t04",
+      "category": "taxi",
+      "english": "Turn left",
+      "arabic": "لف يسار",
+      "transliteration": "liff yasaar"
+    },
+    {
+      "id": "t05",
+      "category": "taxi",
+      "english": "Stop here",
+      "arabic": "وقف هنا",
+      "transliteration": "waggif hina"
+    },
+    {
+      "id": "t06",
+      "category": "taxi",
+      "english": "At the roundabout",
+      "arabic": "عند الدوار",
+      "transliteration": "'ind ad-dawwaar"
+    },
+    {
+      "id": "t07",
+      "category": "taxi",
+      "english": "At the traffic light",
+      "arabic": "عند الإشارة",
+      "transliteration": "'ind al-ishaara"
+    },
+    {
+      "id": "t08",
+      "category": "taxi",
+      "english": "How long will it take?",
+      "arabic": "كم ياخذ وقت؟",
+      "transliteration": "kam yaakhudh wagt?"
+    },
+    {
+      "id": "t09",
+      "category": "taxi",
+      "english": "Use the meter please",
+      "arabic": "شغل العداد لو سمحت",
+      "transliteration": "shaghghil al-'addaad law samaht"
+    },
+    {
+      "id": "t10",
+      "category": "taxi",
+      "english": "I'm in a hurry",
+      "arabic": "أنا مستعجل",
+      "transliteration": "ana musta'jil"
+    },
+    {
+      "id": "t11",
+      "category": "taxi",
+      "english": "Here is fine",
+      "arabic": "هنا زين",
+      "transliteration": "hina zain"
+    },
+    {
+      "id": "t12",
+      "category": "taxi",
+      "english": "Do you know this address?",
+      "arabic": "تعرف هذا العنوان؟",
+      "transliteration": "ta'rif haadha al-'unwaan?"
+    },
+    {
+      "id": "t13",
+      "category": "taxi",
+      "english": "To the airport",
+      "arabic": "إلى المطار",
+      "transliteration": "ila al-mataar"
+    },
+    {
+      "id": "t14",
+      "category": "taxi",
+      "english": "Wait for me five minutes",
+      "arabic": "انتظرني خمس دقايق",
+      "transliteration": "intathirni khams dagaayig"
+    },
+    {
+      "id": "f01",
+      "category": "food",
+      "english": "Arabic coffee please",
+      "arabic": "قهوة عربية لو سمحت",
+      "transliteration": "gahwa 'arabiya law samaht"
+    },
+    {
+      "id": "f02",
+      "category": "food",
+      "english": "A cappuccino",
+      "arabic": "كابتشينو",
+      "transliteration": "kabitsheeno"
+    },
+    {
+      "id": "f03",
+      "category": "food",
+      "english": "Without sugar",
+      "arabic": "بدون سكر",
+      "transliteration": "bidoon sukkar"
+    },
+    {
+      "id": "f04",
+      "category": "food",
+      "english": "A little sugar",
+      "arabic": "سكر شوي",
+      "transliteration": "sukkar shway"
+    },
+    {
+      "id": "f05",
+      "category": "food",
+      "english": "Is this spicy?",
+      "arabic": "هذا حار؟",
+      "transliteration": "haadha haarr?"
+    },
+    {
+      "id": "f06",
+      "category": "food",
+      "english": "I don't eat meat",
+      "arabic": "ما آكل لحم",
+      "transliteration": "ma aakul lahm"
+    },
+    {
+      "id": "f07",
+      "category": "food",
+      "english": "The bill please",
+      "arabic": "الحساب لو سمحت",
+      "transliteration": "al-hisaab law samaht"
+    },
+    {
+      "id": "f08",
+      "category": "food",
+      "english": "Takeaway",
+      "arabic": "سفري",
+      "transliteration": "safari"
+    },
+    {
+      "id": "f09",
+      "category": "food",
+      "english": "Eating in",
+      "arabic": "هنا",
+      "transliteration": "hina"
+    },
+    {
+      "id": "f10",
+      "category": "food",
+      "english": "Water please",
+      "arabic": "موية لو سمحت",
+      "transliteration": "mayya law samaht"
+    },
+    {
+      "id": "f11",
+      "category": "food",
+      "english": "That was delicious",
+      "arabic": "كان لذيذ",
+      "transliteration": "kaan ladheedh"
+    },
+    {
+      "id": "f12",
+      "category": "food",
+      "english": "I'm full",
+      "arabic": "شبعت",
+      "transliteration": "shabi't"
+    },
+    {
+      "id": "f13",
+      "category": "food",
+      "english": "A table for two?",
+      "arabic": "طاولة لاثنين؟",
+      "transliteration": "taawla lathnain?"
+    },
+    {
+      "id": "f14",
+      "category": "food",
+      "english": "What do you recommend?",
+      "arabic": "وش تنصحني؟",
+      "transliteration": "wesh tinsahni?"
+    },
+    {
+      "id": "f15",
+      "category": "food",
+      "english": "Breakfast",
+      "arabic": "فطور",
+      "transliteration": "futoor"
+    },
+    {
+      "id": "f16",
+      "category": "food",
+      "english": "Lunch",
+      "arabic": "غداء",
+      "transliteration": "ghada"
+    },
+    {
+      "id": "f17",
+      "category": "food",
+      "english": "Dinner",
+      "arabic": "عشاء",
+      "transliteration": "'asha"
+    },
+    {
+      "id": "f18",
+      "category": "food",
+      "english": "Food",
+      "arabic": "أكل",
+      "transliteration": "akl",
+      "note": "Everyday Najdi. ta'aam is the formal word."
+    },
+    {
+      "id": "f19",
+      "category": "food",
+      "english": "Water",
+      "arabic": "موية",
+      "transliteration": "mayya",
+      "note": "MSA says maa'; Najdi says mayya."
+    },
+    {
+      "id": "s01",
+      "category": "shopping",
+      "english": "How much is this?",
+      "arabic": "كم سعره؟",
+      "transliteration": "kam si'ruh?"
+    },
+    {
+      "id": "s02",
+      "category": "shopping",
+      "english": "That's expensive",
+      "arabic": "غالي",
+      "transliteration": "ghaali"
+    },
+    {
+      "id": "s03",
+      "category": "shopping",
+      "english": "Can you make it cheaper?",
+      "arabic": "ما فيه تخفيض؟",
+      "transliteration": "ma feeh takhfeed?"
+    },
+    {
+      "id": "s04",
+      "category": "shopping",
+      "english": "I'll take it",
+      "arabic": "آخذه",
+      "transliteration": "aakhudhuh"
+    },
+    {
+      "id": "s05",
+      "category": "shopping",
+      "english": "Another colour?",
+      "arabic": "فيه لون ثاني؟",
+      "transliteration": "feeh loon thaani?"
+    },
+    {
+      "id": "s06",
+      "category": "shopping",
+      "english": "What size?",
+      "arabic": "أي مقاس؟",
+      "transliteration": "ayy magaas?"
+    },
+    {
+      "id": "s07",
+      "category": "shopping",
+      "english": "Can I pay by card?",
+      "arabic": "أقدر أدفع بالبطاقة؟",
+      "transliteration": "agdar adfa' bil-bitaaga?"
+    },
+    {
+      "id": "s08",
+      "category": "shopping",
+      "english": "Just looking, thanks",
+      "arabic": "أشوف بس",
+      "transliteration": "ashoof bas"
+    },
+    {
+      "id": "s09",
+      "category": "shopping",
+      "english": "Where can I find...?",
+      "arabic": "وين ألقى",
+      "transliteration": "ween alga"
+    },
+    {
+      "id": "s10",
+      "category": "shopping",
+      "english": "Do you have a bag?",
+      "arabic": "عندك كيس؟",
+      "transliteration": "'indak kees?"
+    },
+    {
+      "id": "s11",
+      "category": "shopping",
+      "english": "Is there a discount?",
+      "arabic": "فيه خصم؟",
+      "transliteration": "feeh khasm?"
+    },
+    {
+      "id": "s12",
+      "category": "shopping",
+      "english": "I'll think about it",
+      "arabic": "بفكر فيه",
+      "transliteration": "bafakkir feeh"
+    },
+    {
+      "id": "c01",
+      "category": "colours",
+      "english": "White",
+      "arabic": "أبيض",
+      "transliteration": "abyad"
+    },
+    {
+      "id": "c02",
+      "category": "colours",
+      "english": "Black",
+      "arabic": "أسود",
+      "transliteration": "aswad"
+    },
+    {
+      "id": "c03",
+      "category": "colours",
+      "english": "Red",
+      "arabic": "أحمر",
+      "transliteration": "ahmar"
+    },
+    {
+      "id": "c04",
+      "category": "colours",
+      "english": "Blue",
+      "arabic": "أزرق",
+      "transliteration": "azrag"
+    },
+    {
+      "id": "c05",
+      "category": "colours",
+      "english": "Green",
+      "arabic": "أخضر",
+      "transliteration": "akhdar"
+    },
+    {
+      "id": "c06",
+      "category": "colours",
+      "english": "Yellow",
+      "arabic": "أصفر",
+      "transliteration": "asfar"
+    },
+    {
+      "id": "c07",
+      "category": "colours",
+      "english": "Brown",
+      "arabic": "بني",
+      "transliteration": "bunni"
+    },
+    {
+      "id": "c08",
+      "category": "colours",
+      "english": "Grey",
+      "arabic": "رمادي",
+      "transliteration": "ramaadi"
+    },
+    {
+      "id": "c09",
+      "category": "colours",
+      "english": "Orange",
+      "arabic": "برتقالي",
+      "transliteration": "burtugaali"
+    },
+    {
+      "id": "c10",
+      "category": "colours",
+      "english": "Pink",
+      "arabic": "وردي",
+      "transliteration": "wardi"
+    },
+    {
+      "id": "c11",
+      "category": "colours",
+      "english": "Purple",
+      "arabic": "بنفسجي",
+      "transliteration": "banafsaji"
+    },
+    {
+      "id": "c12",
+      "category": "colours",
+      "english": "Gold",
+      "arabic": "ذهبي",
+      "transliteration": "dhahabi"
+    },
+    {
+      "id": "c13",
+      "category": "colours",
+      "english": "Silver",
+      "arabic": "فضي",
+      "transliteration": "fiddi"
+    },
+    {
+      "id": "c14",
+      "category": "colours",
+      "english": "Dark (shade)",
+      "arabic": "غامق",
+      "transliteration": "ghaamig"
+    },
+    {
+      "id": "c15",
+      "category": "colours",
+      "english": "Light (shade)",
+      "arabic": "فاتح",
+      "transliteration": "faatih"
+    },
+    {
+      "id": "c16",
+      "category": "colours",
+      "english": "What colour is it?",
+      "arabic": "وش لونه؟",
+      "transliteration": "wesh loonuh?"
+    },
+    {
+      "id": "n01",
+      "category": "numbers",
+      "english": "One",
+      "arabic": "واحد",
+      "transliteration": "waahid"
+    },
+    {
+      "id": "n02",
+      "category": "numbers",
+      "english": "Two",
+      "arabic": "اثنين",
+      "transliteration": "ithnain"
+    },
+    {
+      "id": "n03",
+      "category": "numbers",
+      "english": "Three",
+      "arabic": "ثلاثة",
+      "transliteration": "thalaatha"
+    },
+    {
+      "id": "n04",
+      "category": "numbers",
+      "english": "Four",
+      "arabic": "أربعة",
+      "transliteration": "arba'a"
+    },
+    {
+      "id": "n05",
+      "category": "numbers",
+      "english": "Five",
+      "arabic": "خمسة",
+      "transliteration": "khamsa"
+    },
+    {
+      "id": "n06",
+      "category": "numbers",
+      "english": "Six",
+      "arabic": "ستة",
+      "transliteration": "sitta"
+    },
+    {
+      "id": "n07",
+      "category": "numbers",
+      "english": "Seven",
+      "arabic": "سبعة",
+      "transliteration": "sab'a"
+    },
+    {
+      "id": "n08",
+      "category": "numbers",
+      "english": "Eight",
+      "arabic": "ثمانية",
+      "transliteration": "thamaanya"
+    },
+    {
+      "id": "n09",
+      "category": "numbers",
+      "english": "Nine",
+      "arabic": "تسعة",
+      "transliteration": "tis'a"
+    },
+    {
+      "id": "n10",
+      "category": "numbers",
+      "english": "Ten",
+      "arabic": "عشرة",
+      "transliteration": "'ashara"
+    },
+    {
+      "id": "n11",
+      "category": "numbers",
+      "english": "Twenty",
+      "arabic": "عشرين",
+      "transliteration": "'ishreen"
+    },
+    {
+      "id": "n12",
+      "category": "numbers",
+      "english": "Fifty",
+      "arabic": "خمسين",
+      "transliteration": "khamseen"
+    },
+    {
+      "id": "n13",
+      "category": "numbers",
+      "english": "One hundred",
+      "arabic": "مية",
+      "transliteration": "miyya"
+    },
+    {
+      "id": "n14",
+      "category": "numbers",
+      "english": "Half",
+      "arabic": "نص",
+      "transliteration": "nuss"
+    },
+    {
+      "id": "n15",
+      "category": "numbers",
+      "english": "Riyals",
+      "arabic": "ريال",
+      "transliteration": "riyaal"
+    },
+    {
+      "id": "e01",
+      "category": "emergency",
+      "english": "Help me!",
+      "arabic": "ساعدوني",
+      "transliteration": "saa'idooni"
+    },
+    {
+      "id": "e02",
+      "category": "emergency",
+      "english": "Call an ambulance",
+      "arabic": "اتصل بالإسعاف",
+      "transliteration": "ittasil bil-is'aaf"
+    },
+    {
+      "id": "e03",
+      "category": "emergency",
+      "english": "Call the police",
+      "arabic": "اتصل بالشرطة",
+      "transliteration": "ittasil bish-shurta"
+    },
+    {
+      "id": "e04",
+      "category": "emergency",
+      "english": "I need a doctor",
+      "arabic": "أبغى دكتور",
+      "transliteration": "abgha doktoor"
+    },
+    {
+      "id": "e05",
+      "category": "emergency",
+      "english": "I'm sick",
+      "arabic": "أنا مريض",
+      "transliteration": "ana mareed"
+    },
+    {
+      "id": "e06",
+      "category": "emergency",
+      "english": "Where is the hospital?",
+      "arabic": "وين المستشفى؟",
+      "transliteration": "ween al-mustashfa?"
+    },
+    {
+      "id": "e07",
+      "category": "emergency",
+      "english": "Where is the nearest pharmacy?",
+      "arabic": "وين أقرب صيدلية؟",
+      "transliteration": "ween agrab saydaliyya?"
+    },
+    {
+      "id": "e08",
+      "category": "emergency",
+      "english": "I lost my phone",
+      "arabic": "ضاع جوالي",
+      "transliteration": "daa' jawwaali"
+    },
+    {
+      "id": "e09",
+      "category": "emergency",
+      "english": "I lost my passport",
+      "arabic": "ضاع جوازي",
+      "transliteration": "daa' jawaazi"
+    },
+    {
+      "id": "e10",
+      "category": "emergency",
+      "english": "It hurts here",
+      "arabic": "يوجعني هنا",
+      "transliteration": "yooja'ni hina"
+    },
+    {
+      "id": "e11",
+      "category": "emergency",
+      "english": "I'm allergic to...",
+      "arabic": "عندي حساسية من",
+      "transliteration": "'indi hasaasiya min"
+    },
+    {
+      "id": "e12",
+      "category": "emergency",
+      "english": "I don't feel well",
+      "arabic": "ما أنا بخير",
+      "transliteration": "ma ana bi-khair"
+    },
+    {
+      "id": "e13",
+      "category": "emergency",
+      "english": "Please call this number",
+      "arabic": "اتصل بهذا الرقم لو سمحت",
+      "transliteration": "ittasil bi-haadha ar-ragam law samaht"
+    },
+    {
+      "id": "o01",
+      "category": "office",
+      "english": "Good morning, everyone",
+      "arabic": "صباح الخير على الجميع",
+      "transliteration": "sabaah al-khair 'ala al-jamee'"
+    },
+    {
+      "id": "o02",
+      "category": "office",
+      "english": "How was your weekend?",
+      "arabic": "كيف كانت الإجازة؟",
+      "transliteration": "keef kaanat al-ijaaza?"
+    },
+    {
+      "id": "o03",
+      "category": "office",
+      "english": "I have a meeting",
+      "arabic": "عندي اجتماع",
+      "transliteration": "'indi ijtimaa'"
+    },
+    {
+      "id": "o04",
+      "category": "office",
+      "english": "Can we talk later?",
+      "arabic": "نتكلم بعدين؟",
+      "transliteration": "nitkallam ba'dain?"
+    },
+    {
+      "id": "o05",
+      "category": "office",
+      "english": "I'll send it to you",
+      "arabic": "برسله لك",
+      "transliteration": "barsiluh lak"
+    },
+    {
+      "id": "o06",
+      "category": "office",
+      "english": "Sorry, I'm late",
+      "arabic": "آسف تأخرت",
+      "transliteration": "aasif ta'akhkhart"
+    },
+    {
+      "id": "o07",
+      "category": "office",
+      "english": "Take your time",
+      "arabic": "على راحتك",
+      "transliteration": "'ala raahtak"
+    },
+    {
+      "id": "o08",
+      "category": "office",
+      "english": "I didn't understand",
+      "arabic": "ما فهمت",
+      "transliteration": "ma fihimt"
+    },
+    {
+      "id": "o09",
+      "category": "office",
+      "english": "Can you repeat that?",
+      "arabic": "ممكن تعيد؟",
+      "transliteration": "mumkin t'eed?"
+    },
+    {
+      "id": "o10",
+      "category": "office",
+      "english": "Do you speak English?",
+      "arabic": "تتكلم إنجليزي؟",
+      "transliteration": "titkallam ingileezi?"
+    },
+    {
+      "id": "o11",
+      "category": "office",
+      "english": "I'm still learning Arabic",
+      "arabic": "لسه أتعلم عربي",
+      "transliteration": "lissa at'allam 'arabi"
+    },
+    {
+      "id": "o12",
+      "category": "office",
+      "english": "Speak slowly please",
+      "arabic": "تكلم بالراحة لو سمحت",
+      "transliteration": "tkallam bir-raaha law samaht"
+    },
+    {
+      "id": "o13",
+      "category": "office",
+      "english": "See you tomorrow",
+      "arabic": "أشوفك بكرة",
+      "transliteration": "ashoofak bukra"
+    },
+    {
+      "id": "u01",
+      "category": "cognates",
+      "english": "World",
+      "arabic": "دنيا",
+      "transliteration": "dunya",
+      "note": "Same as Urdu dunya."
+    },
+    {
+      "id": "u02",
+      "category": "cognates",
+      "english": "Book",
+      "arabic": "كتاب",
+      "transliteration": "kitaab",
+      "note": "Same as Urdu kitaab."
+    },
+    {
+      "id": "u03",
+      "category": "cognates",
+      "english": "Chair",
+      "arabic": "كرسي",
+      "transliteration": "kursi",
+      "note": "Same as Urdu kursi."
+    },
+    {
+      "id": "u04",
+      "category": "cognates",
+      "english": "Pen",
+      "arabic": "قلم",
+      "transliteration": "galam",
+      "note": "Urdu qalam. Najdi says the q as g."
+    },
+    {
+      "id": "u05",
+      "category": "cognates",
+      "english": "Time",
+      "arabic": "وقت",
+      "transliteration": "wagt",
+      "note": "Urdu waqt. Najdi says the q as g."
+    },
+    {
+      "id": "u06",
+      "category": "cognates",
+      "english": "University",
+      "arabic": "جامعة",
+      "transliteration": "jaami'a",
+      "note": "Urdu jaamia."
+    },
+    {
+      "id": "u07",
+      "category": "cognates",
+      "english": "City",
+      "arabic": "مدينة",
+      "transliteration": "madeena",
+      "note": "Urdu usually says shehr; this is the Arabic word."
+    },
+    {
+      "id": "u08",
+      "category": "cognates",
+      "english": "Queen",
+      "arabic": "ملكة",
+      "transliteration": "malika",
+      "note": "Same as Urdu malika."
+    },
+    {
+      "id": "u09",
+      "category": "cognates",
+      "english": "News",
+      "arabic": "خبر",
+      "transliteration": "khabar",
+      "note": "Same as Urdu khabar."
+    },
+    {
+      "id": "u10",
+      "category": "cognates",
+      "english": "Account, calculation",
+      "arabic": "حساب",
+      "transliteration": "hisaab",
+      "note": "Same as Urdu hisaab. Also means the bill."
+    },
+    {
+      "id": "u11",
+      "category": "cognates",
+      "english": "Human, person",
+      "arabic": "إنسان",
+      "transliteration": "insaan",
+      "note": "Same as Urdu insaan."
+    },
+    {
+      "id": "u12",
+      "category": "cognates",
+      "english": "Soap",
+      "arabic": "صابون",
+      "transliteration": "saaboon",
+      "note": "Urdu saabun."
+    },
+    {
+      "id": "u13",
+      "category": "cognates",
+      "english": "Building",
+      "arabic": "عمارة",
+      "transliteration": "'imaara",
+      "note": "Urdu imaarat."
+    },
+    {
+      "id": "u14",
+      "category": "cognates",
+      "english": "Delicious",
+      "arabic": "لذيذ",
+      "transliteration": "ladheedh",
+      "note": "Urdu lazeez. Arabic keeps the dh sound."
+    },
+    {
+      "id": "u15",
+      "category": "cognates",
+      "english": "Necessary",
+      "arabic": "ضروري",
+      "transliteration": "daroori",
+      "note": "Urdu zaroori. Arabic uses d, not z."
+    },
+    {
+      "id": "u16",
+      "category": "cognates",
+      "english": "Luck, fortune",
+      "arabic": "نصيب",
+      "transliteration": "naseeb",
+      "note": "Same as Urdu naseeb."
+    },
+    {
+      "id": "u17",
+      "category": "cognates",
+      "english": "Answer",
+      "arabic": "جواب",
+      "transliteration": "jawaab",
+      "note": "Same as Urdu jawaab."
+    },
+    {
+      "id": "u18",
+      "category": "cognates",
+      "english": "Question",
+      "arabic": "سؤال",
+      "transliteration": "su'aal",
+      "note": "Urdu sawaal."
+    },
+    {
+      "id": "u19",
+      "category": "cognates",
+      "english": "Travel, a trip",
+      "arabic": "سفر",
+      "transliteration": "safar",
+      "note": "Same as Urdu safar. Note safari means takeaway food."
+    },
+    {
+      "id": "u20",
+      "category": "cognates",
+      "english": "Shop",
+      "arabic": "دكان",
+      "transliteration": "dukkaan",
+      "note": "Same as Urdu dukaan."
+    },
+    {
+      "id": "u21",
+      "category": "cognates",
+      "english": "Exam, test",
+      "arabic": "امتحان",
+      "transliteration": "imtihaan",
+      "note": "Same as Urdu imtihaan."
+    },
+    {
+      "id": "u22",
+      "category": "cognates",
+      "english": "Condition, state",
+      "arabic": "حال",
+      "transliteration": "haal",
+      "note": "Same as Urdu haal, as in keef haalak."
+    },
+    {
+      "id": "u23",
+      "category": "cognates",
+      "english": "Distance",
+      "arabic": "مسافة",
+      "transliteration": "masaafa",
+      "note": "Urdu masaafat."
+    },
+    {
+      "id": "u24",
+      "category": "cognates",
+      "english": "Benefit, profit",
+      "arabic": "فائدة",
+      "transliteration": "faa'ida",
+      "note": "Same as Urdu faaida."
+    },
+    {
+      "id": "u25",
+      "category": "cognates",
+      "english": "Oppression, injustice",
+      "arabic": "ظلم",
+      "transliteration": "zulm",
+      "note": "Same as Urdu zulm."
+    },
+    {
+      "id": "u26",
+      "category": "cognates",
+      "english": "Intellect, brains",
+      "arabic": "عقل",
+      "transliteration": "'agl",
+      "note": "Urdu aql. Najdi says the q as g."
+    },
+    {
+      "id": "u27",
+      "category": "cognates",
+      "english": "Poor",
+      "arabic": "فقير",
+      "transliteration": "fageer",
+      "note": "Urdu ghareeb means poor. In Arabic ghareeb means strange. Say fageer.",
+      "warn": true
+    },
+    {
+      "id": "u28",
+      "category": "cognates",
+      "english": "Rich",
+      "arabic": "غني",
+      "transliteration": "ghani",
+      "note": "Urdu ameer means rich. In Arabic ameer means prince. Say ghani.",
+      "warn": true
+    },
+    {
+      "id": "u29",
+      "category": "cognates",
+      "english": "Lawyer",
+      "arabic": "محامي",
+      "transliteration": "muhaami",
+      "note": "Urdu wakeel means lawyer. In Arabic wakeel means agent. Say muhaami.",
+      "warn": true
+    },
+    {
+      "id": "u30",
+      "category": "cognates",
+      "english": "Weather",
+      "arabic": "طقس",
+      "transliteration": "tags",
+      "note": "Urdu mausam means weather. In Arabic mawsim means season. Say tags.",
+      "warn": true
+    },
+    {
+      "id": "u31",
+      "category": "cognates",
+      "english": "Strange, a stranger",
+      "arabic": "غريب",
+      "transliteration": "ghareeb",
+      "note": "Looks like Urdu ghareeb (poor), but in Arabic it means strange.",
+      "warn": true
+    },
+    {
+      "id": "u32",
+      "category": "cognates",
+      "english": "Prince, commander",
+      "arabic": "أمير",
+      "transliteration": "ameer",
+      "note": "Looks like Urdu ameer (rich), but in Arabic it means prince.",
+      "warn": true
+    },
+    {
+      "id": "u33",
+      "category": "cognates",
+      "english": "Agent, representative",
+      "arabic": "وكيل",
+      "transliteration": "wakeel",
+      "note": "Looks like Urdu wakeel (lawyer), but in Arabic it means agent.",
+      "warn": true
+    },
+    {
+      "id": "u34",
+      "category": "cognates",
+      "english": "Season",
+      "arabic": "موسم",
+      "transliteration": "mawsim",
+      "note": "Looks like Urdu mausam (weather), but in Arabic it means season.",
+      "warn": true
+    },
+    {
+      "id": "u35",
+      "category": "cognates",
+      "english": "Leave, holiday",
+      "arabic": "إجازة",
+      "transliteration": "ijaaza",
+      "note": "Urdu ijaazat means permission. In Arabic this is time off work.",
+      "warn": true
+    },
+    {
+      "id": "u36",
+      "category": "cognates",
+      "english": "Medicine",
+      "arabic": "دواء",
+      "transliteration": "dawa",
+      "note": "Same as Urdu dawa."
+    },
+    {
+      "id": "u37",
+      "category": "cognates",
+      "english": "Health",
+      "arabic": "صحة",
+      "transliteration": "sihha",
+      "note": "Urdu sehat."
+    },
+    {
+      "id": "u38",
+      "category": "cognates",
+      "english": "Problem",
+      "arabic": "مشكلة",
+      "transliteration": "mushkila",
+      "note": "Urdu mushkil."
+    },
+    {
+      "id": "u39",
+      "category": "cognates",
+      "english": "Service",
+      "arabic": "خدمة",
+      "transliteration": "khidma",
+      "note": "Urdu khidmat."
+    },
+    {
+      "id": "u40",
+      "category": "cognates",
+      "english": "Price, value",
+      "arabic": "قيمة",
+      "transliteration": "geema",
+      "note": "Urdu qeemat. Najdi says the q as g."
+    },
+    {
+      "id": "u41",
+      "category": "cognates",
+      "english": "Paper",
+      "arabic": "ورق",
+      "transliteration": "warag",
+      "note": "Urdu waraq. Najdi says the q as g."
+    },
+    {
+      "id": "u42",
+      "category": "cognates",
+      "english": "Heart",
+      "arabic": "قلب",
+      "transliteration": "galb",
+      "note": "Urdu qalb. Najdi says the q as g."
+    },
+    {
+      "id": "u43",
+      "category": "cognates",
+      "english": "Truth, a right",
+      "arabic": "حق",
+      "transliteration": "hagg",
+      "note": "Urdu haq. Najdi says the q as g."
+    },
+    {
+      "id": "u44",
+      "category": "cognates",
+      "english": "Friend",
+      "arabic": "صديق",
+      "transliteration": "sadeeg",
+      "note": "Urdu sadeeq. Najdi says the q as g."
+    },
+    {
+      "id": "u45",
+      "category": "cognates",
+      "english": "Life",
+      "arabic": "حياة",
+      "transliteration": "hayaah",
+      "note": "Urdu hayaat."
+    },
+    {
+      "id": "u46",
+      "category": "cognates",
+      "english": "Reason, cause",
+      "arabic": "سبب",
+      "transliteration": "sabab",
+      "note": "Same as Urdu sabab."
+    },
+    {
+      "id": "u47",
+      "category": "cognates",
+      "english": "Work, a job",
+      "arabic": "شغل",
+      "transliteration": "shughl",
+      "note": "Same as Urdu shughl."
+    },
+    {
+      "id": "u48",
+      "category": "cognates",
+      "english": "Teacher",
+      "arabic": "أستاذ",
+      "transliteration": "ustaadh",
+      "note": "Urdu ustaad."
+    },
+    {
+      "id": "u49",
+      "category": "cognates",
+      "english": "Government",
+      "arabic": "حكومة",
+      "transliteration": "hukooma",
+      "note": "Urdu hukoomat."
+    },
+    {
+      "id": "u50",
+      "category": "cognates",
+      "english": "Respect",
+      "arabic": "احترام",
+      "transliteration": "ihtiraam",
+      "note": "Same as Urdu ihtiraam."
+    },
+    {
+      "id": "u51",
+      "category": "cognates",
+      "english": "Opinion",
+      "arabic": "رأي",
+      "transliteration": "ra'y",
+      "note": "Urdu raay."
+    },
+    {
+      "id": "u52",
+      "category": "cognates",
+      "english": "Love",
+      "arabic": "حب",
+      "transliteration": "hubb",
+      "note": "Urdu mohabbat comes from the same Arabic root."
+    }
   ]
 }

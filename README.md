@@ -15,7 +15,7 @@ in a Riyadh taxi, café or office.
 | --- | --- | --- |
 | **1** | Project setup, PWA shell, **Speak** mode (English → Arabic) end to end | ✅ Done |
 | **2** | **Listen** mode (Arabic audio → English), push-to-talk, `/api/listen` | ✅ Done |
-| **3** | Offline phrasebook (116 phrases, IndexedDB), history, saved items | ✅ Done |
+| **3** | Offline phrasebook (173 phrases, IndexedDB), history, saved items | ✅ Done |
 
 ---
 
@@ -124,7 +124,7 @@ components/             UI
 public/
   manifest.webmanifest  PWA manifest
   sw.js                 Hand-written service worker
-  phrasebook.json       116 Riyadh phrases in 8 categories
+  phrasebook.json       173 Riyadh phrases in 9 categories
   icons/                Generated PNG icon set
 ```
 
@@ -178,8 +178,15 @@ on both the client and the server so a bad label cannot reach the API either way
 
 ## Offline phrasebook
 
-116 everyday Riyadh phrases across eight categories — greetings, taxi, coffee
-and food, shopping, colours, numbers, emergencies, and office small talk. Searchable across
+173 everyday Riyadh phrases across nine categories — greetings, taxi, coffee
+and food, shopping, colours, numbers, emergencies, office small talk, and a
+list of words an Urdu or Hindi speaker already knows.
+
+That last category is a shortcut: Urdu borrowed heavily from Arabic, so words
+like kitaab, khabar, naseeb and imtihaan carry over unchanged. Entries carry a
+short note saying so — and, where the two languages have drifted apart, a
+warning. Calling someone ghareeb to mean "poor" lands as "strange" in Arabic;
+nine such traps are flagged explicitly. Searchable across
 English, Arabic script and transliteration at once, with a play button on every
 entry.
 
