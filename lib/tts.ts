@@ -98,6 +98,14 @@ function bootstrap() {
   refresh();
   synth.addEventListener("voiceschanged", () => refresh());
 
+  // Installing a voice means leaving for system settings and coming back.
+  // Without this the app keeps the empty list it resolved at startup and
+  // insists there is no Arabic voice even though one was just installed.
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) refresh();
+  });
+  window.addEventListener("focus", () => refresh());
+
   // Safari backstop: poll for ~3.5s in case voiceschanged never fires, then
   // commit to whatever we have so the UI stops waiting.
   let tries = 0;
