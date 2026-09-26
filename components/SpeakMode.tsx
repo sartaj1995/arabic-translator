@@ -115,17 +115,6 @@ export default function SpeakMode({
           </div>
         )}
 
-        {tts.ready && tts.status === "no-voice" && result && (
-          <div className="mb-4 rounded-2xl border-2 border-warn-line bg-warn-tint px-4 py-3">
-            <p className="font-bold text-ink">No Arabic voice on this device</p>
-            <p className="text-sm text-ink-soft">
-              Text still works. To hear it, install an Arabic voice: iOS
-              Settings &rsaquo; Accessibility &rsaquo; Spoken Content &rsaquo;
-              Voices &rsaquo; Arabic. On Android, add Arabic under
-              Text-to-speech output.
-            </p>
-          </div>
-        )}
 
         {loading && (
           <div className="flex flex-col items-center justify-center gap-3 py-16 text-ink-faint">

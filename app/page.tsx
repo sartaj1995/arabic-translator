@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import BottomNav, { ONLINE_ONLY, type Mode } from "@/components/BottomNav";
 import HistoryMode from "@/components/HistoryMode";
 import ListenMode from "@/components/ListenMode";
+import NoVoiceNotice from "@/components/NoVoiceNotice";
 import PhrasebookMode from "@/components/PhrasebookMode";
 import SpeakMode from "@/components/SpeakMode";
 import { useHistory, type NewEntry } from "@/lib/history";
@@ -50,6 +51,10 @@ export default function Home() {
           </p>
         </div>
       )}
+
+      {/* Shown on every screen, because having no Arabic voice is a property
+          of the device rather than of whichever tab is open. */}
+      {tts.ready && tts.status === "no-voice" && <NoVoiceNotice />}
 
       {/* Screens stay mounted and are hidden with CSS. Unmounting would drop a
           result, a half-typed sentence, or the resolved TTS voice list on every
