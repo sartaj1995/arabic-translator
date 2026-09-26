@@ -87,6 +87,70 @@ export default function NoVoiceNotice() {
             If Google Text-to-speech is not listed, install it from the Play
             Store first.
           </p>
+
+          {/* A reload is the one thing guaranteed to give the browser a fresh
+              voice list. The app re-checks automatically when it returns to the
+              foreground, but some Android builds only publish a newly installed
+              voice to a page that loads after the install. */}
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="press w-full rounded-xl border-2 border-warn-line bg-surface py-2.5 text-base font-bold text-ink"
+          >
+            I installed a voice — check again
+          </button>
+
+          <VoiceDiagnostics />
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Lists exactly what the browser reports, so a device that still says "no
+ * Arabic voice" after installing one can be diagnosed from a screenshot
+ * instead of guesswork.
+ */
+function VoiceDiagnostics() {
+  const [show, setShow] = useState(false);
+
+  const voices =
+    typeof window !== "undefined" && window.speechSynthesis
+      ? window.speechSynthesis.getVoices()
+      : [];
+
+  return (
+    <div className="border-t border-warn-line pt-2">
+      <button
+        type="button"
+        onClick={() => setShow((v) => !v)}
+        aria-expanded={show}
+        className="press text-xs font-bold text-ink-soft underline"
+      >
+        {show ? "Hide" : "Show"} technical details
+      </button>
+
+      {show && (
+        <div className="mt-2 space-y-1 rounded-lg bg-surface p-2 font-mono text-[11px] leading-tight text-ink-soft">
+          <p>
+            speechSynthesis:{" "}
+            {typeof window !== "undefined" && window.speechSynthesis
+              ? "available"
+              : "MISSING"}
+          </p>
+          <p>voices reported: {voices.length}</p>
+          {voices.length === 0 ? (
+            <p>(the browser is reporting no voices at all)</p>
+          ) : (
+            <ul className="space-y-0.5">
+              {voices.map((v) => (
+                <li key={`${v.name}|${v.lang}`}>
+                  {v.lang} · {v.name} · {v.localService ? "local" : "remote"}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>

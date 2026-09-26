@@ -15,6 +15,9 @@
  */
 const ARABIC_PRIMARY = new Set([
   "ar", // Arabic (macrolanguage) — what browsers almost always report
+  "ara", // ISO 639-2. Android TTS is built on java.util.Locale, whose
+  //        getISO3Language() returns "ara"; some engines pass it straight
+  //        through instead of normalising to BCP-47.
   "arb", // Standard Arabic
   "ars", // Najdi Arabic — exactly the target dialect
   "ary", // Moroccan
