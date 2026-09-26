@@ -92,4 +92,16 @@ export interface Phrase {
   english: string;
   arabic: string;
   transliteration: string;
+  /**
+   * Optional learning aid, shown under the entry. Used mainly by the Urdu
+   * cognate list: either confirming a word carries over unchanged, or warning
+   * that the Urdu and Arabic meanings have drifted apart.
+   */
+  note?: string;
+  /**
+   * Renders the note as a warning rather than a hint. Set it when following
+   * the Urdu instinct would actually get you misunderstood — calling someone
+   * `ghareeb` to mean "poor" lands as "strange" in Arabic.
+   */
+  warn?: boolean;
 }

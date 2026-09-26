@@ -153,7 +153,7 @@ function PhraseRow({ phrase, tts }: { phrase: Phrase; tts: UseTts }) {
   const { copied, copy } = useCopy();
 
   return (
-    <li className="flex items-center gap-3 py-3">
+    <li className="flex items-start gap-3 py-3">
       <button
         type="button"
         onClick={() => copy(phrase.arabic)}
@@ -169,7 +169,29 @@ function PhraseRow({ phrase, tts }: { phrase: Phrase; tts: UseTts }) {
             phrase.transliteration
           )}
         </p>
+
+        {/* A warning means following the Urdu instinct would get you
+            misunderstood, so it is given real visual weight rather than
+            sitting in the same grey as an ordinary hint. */}
+        {phrase.note ? (
+          phrase.warn ? (
+            <p className="mt-1.5 flex items-start gap-1.5 rounded-lg bg-warn-tint px-2 py-1 text-xs leading-snug text-ink-soft">
+              <svg
+                viewBox="0 0 24 24"
+                className="mt-px size-3.5 shrink-0"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M12 2 1 21h22L12 2Zm0 6a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1Zm0 10.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Z" />
+              </svg>
+              <span>{phrase.note}</span>
+            </p>
+          ) : (
+            <p className="mt-1 text-xs leading-snug text-ink-faint">{phrase.note}</p>
+          )
+        ) : null}
       </button>
+
       <PlayButton
         text={phrase.arabic}
         tts={tts}

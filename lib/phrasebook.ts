@@ -104,7 +104,11 @@ export function usePhrasebook(): UsePhrasebook {
     () =>
       phrases.map((p) => ({
         phrase: p,
-        haystack: `${p.english} ${p.transliteration} ${p.arabic}`.toLowerCase(),
+        // Notes are searchable too, so looking up the word you already know
+        // finds the right answer: typing "ghareeb" surfaces `fageer`, whose
+        // note explains why the Urdu instinct is wrong.
+        haystack:
+          `${p.english} ${p.transliteration} ${p.arabic} ${p.note ?? ""}`.toLowerCase(),
       })),
     [phrases],
   );
