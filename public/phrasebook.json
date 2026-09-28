@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "note": "Saudi Najdi Arabic as spoken in Riyadh. Transliteration is plain phonetic: g for ق, ' for ع, doubled long vowels.",
   "categories": [
     {
@@ -405,6 +405,22 @@
       "arabic": "موية",
       "transliteration": "mayya",
       "note": "MSA says maa'; Najdi says mayya."
+    },
+    {
+      "id": "f20",
+      "category": "food",
+      "english": "Calories",
+      "arabic": "سعرات حرارية",
+      "transliteration": "sa'raat haraariya",
+      "note": "One calorie is sa'ra haraariya. Printed on menus across Riyadh."
+    },
+    {
+      "id": "f21",
+      "category": "food",
+      "english": "Protein",
+      "arabic": "بروتين",
+      "transliteration": "brooteen",
+      "note": "A borrowed word, so it sounds close to the English."
     },
     {
       "id": "s01",
