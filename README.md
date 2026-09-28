@@ -15,7 +15,7 @@ in a Riyadh taxi, café or office.
 | --- | --- | --- |
 | **1** | Project setup, PWA shell, **Speak** mode (English → Arabic) end to end | ✅ Done |
 | **2** | **Listen** mode (Arabic audio → English), push-to-talk, `/api/listen` | ✅ Done |
-| **3** | Offline phrasebook (173 phrases, IndexedDB), history, saved items | ✅ Done |
+| **3** | Offline phrasebook (175 phrases, IndexedDB), history, saved items | ✅ Done |
 
 ---
 
@@ -124,7 +124,7 @@ components/             UI
 public/
   manifest.webmanifest  PWA manifest
   sw.js                 Hand-written service worker
-  phrasebook.json       173 Riyadh phrases in 9 categories
+  phrasebook.json       175 Riyadh phrases in 9 categories
   icons/                Generated PNG icon set
 ```
 
@@ -178,7 +178,7 @@ on both the client and the server so a bad label cannot reach the API either way
 
 ## Offline phrasebook
 
-173 everyday Riyadh phrases across nine categories — greetings, taxi, coffee
+175 everyday Riyadh phrases across nine categories — greetings, taxi, coffee
 and food, shopping, colours, numbers, emergencies, office small talk, and a
 list of words an Urdu or Hindi speaker already knows.
 
