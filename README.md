@@ -361,7 +361,7 @@ public/
   sw.js                 Hand-written service worker
   phrasebook.json       175 Riyadh phrases in 9 categories
   icons/                App icons
-docs/images/            README images
+docs/images/            README images, and the social preview uploaded in repo Settings
 ```
 
 </details>
