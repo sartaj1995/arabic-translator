@@ -72,6 +72,9 @@ All have working defaults; see `.env.example`.
 - `GEMINI_TEXT_MODEL` — model for Speak mode. Defaults to `gemini-3.8-flash`.
 - `GEMINI_AUDIO_MODEL` — model for Listen mode. Must accept audio input.
   Defaults to `gemini-3.8-flash`, which is multimodal.
+- `GEMINI_FALLBACK_MODEL` — tried when the primary model is overloaded or
+  unavailable. Defaults to `gemini-3.5-flash-lite`. Set it to the primary's
+  name to switch the fallback off.
 - `AI_TIMEOUT_MS` — abort a model call after this long. Default `20000`.
 
 Both model defaults are **pinned to a stable model on purpose**. An earlier
