@@ -12,19 +12,25 @@ import type { SpeakResult, ListenResult, GenderVariant, Register } from "./types
  */
 
 /**
- * Pinned to a GA model on purpose.
+ * Pinned to a stable model on purpose.
  *
- * These previously defaulted to the floating alias "gemini-flash-latest",
+ * These originally defaulted to the floating alias "gemini-flash-latest",
  * which appears in the SDK's typed model union but does not resolve on every
  * API key — the deployed app returned UPSTREAM_ERROR on every request. A type
  * listing known model ids is not a guarantee that a given key can reach them,
- * so the default is now a model that is broadly available, and upgrading is an
- * explicit env change rather than something that happens silently.
+ * so the default became a pinned model, and upgrading is an explicit change
+ * rather than something that happens silently.
  *
- * gemini-2.5-flash is multimodal, so it serves both the text and audio calls.
+ * The pin was gemini-2.5-flash until Google limited the 2.5 models to keys
+ * that had already used them. Newer keys got a 404 on every request, which
+ * the app reported as MODEL_NOT_FOUND. gemini-3.8-flash is what Google's model
+ * list marks stable and recommends for new projects. When it is retired in
+ * turn, the upstream 404 names its replacement; the Vercel logs show it.
+ *
+ * gemini-3.8-flash is multimodal, so it serves both the text and audio calls.
  */
-const TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || "gemini-2.5-flash";
-const AUDIO_MODEL = process.env.GEMINI_AUDIO_MODEL || "gemini-2.5-flash";
+const TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || "gemini-3.8-flash";
+const AUDIO_MODEL = process.env.GEMINI_AUDIO_MODEL || "gemini-3.8-flash";
 const TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS || 20_000);
 
 function client(): GoogleGenAI {
@@ -122,8 +128,8 @@ type Part = { text: string } | { inlineData: { mimeType: string; data: string } 
  * One JSON-constrained call, with a single repair retry.
  *
  * The retry exists because schema-constrained decoding can still truncate or
- * emit a stray token. We retry exactly once with an explicit instruction and
- * temperature 0, then fail loudly rather than looping and burning quota.
+ * emit a stray token. We retry exactly once with an explicit instruction,
+ * then fail loudly rather than looping and burning quota.
  */
 async function generateJson<T>(opts: {
   model: string;
@@ -147,7 +153,9 @@ async function generateJson<T>(opts: {
           systemInstruction: opts.system,
           responseMimeType: "application/json",
           responseSchema: opts.schema,
-          temperature: attempt === 0 ? 0.3 : 0,
+          // No temperature override. Gemini 3 models are tuned for the default
+          // of 1.0, and Google warns that lower values can make them loop or
+          // degrade. The response schema is what keeps the output stable.
           abortSignal: AbortSignal.timeout(TIMEOUT_MS),
         },
       });
