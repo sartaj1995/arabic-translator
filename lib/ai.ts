@@ -12,19 +12,39 @@ import type { SpeakResult, ListenResult, GenderVariant, Register } from "./types
  */
 
 /**
- * Pinned to a GA model on purpose.
+ * Pinned to a stable model on purpose.
  *
- * These previously defaulted to the floating alias "gemini-flash-latest",
+ * These originally defaulted to the floating alias "gemini-flash-latest",
  * which appears in the SDK's typed model union but does not resolve on every
  * API key — the deployed app returned UPSTREAM_ERROR on every request. A type
  * listing known model ids is not a guarantee that a given key can reach them,
- * so the default is now a model that is broadly available, and upgrading is an
- * explicit env change rather than something that happens silently.
+ * so the default became a pinned model, and upgrading is an explicit change
+ * rather than something that happens silently.
  *
- * gemini-2.5-flash is multimodal, so it serves both the text and audio calls.
+ * The pin was gemini-2.5-flash until Google limited the 2.5 models to keys
+ * that had already used them. Newer keys got a 404 on every request, which
+ * the app reported as MODEL_NOT_FOUND. gemini-3.8-flash is what Google's model
+ * list marks stable and recommends for new projects. When it is retired in
+ * turn, the upstream 404 names its replacement; the Vercel logs show it.
+ *
+ * gemini-3.8-flash is multimodal, so it serves both the text and audio calls.
  */
-const TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || "gemini-2.5-flash";
-const AUDIO_MODEL = process.env.GEMINI_AUDIO_MODEL || "gemini-2.5-flash";
+const TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || "gemini-3.8-flash";
+const AUDIO_MODEL = process.env.GEMINI_AUDIO_MODEL || "gemini-3.8-flash";
+
+/**
+ * Tried after the primary model fails, for both routes.
+ *
+ * A different model on purpose. Google makes capacity and retirement calls per
+ * model, so a second one keeps the app answering through a demand spike on the
+ * first (the day this was written, gemini-3.8-flash answered two of its first
+ * four requests with 503 "high demand") and through the first being withdrawn,
+ * which is how 2.5 took the app down. Flash-Lite is the other model Google
+ * recommends for new projects, and it is faster, which matters on a second try.
+ *
+ * Set GEMINI_FALLBACK_MODEL to the primary's name to switch the fallback off.
+ */
+const FALLBACK_MODEL = process.env.GEMINI_FALLBACK_MODEL || "gemini-3.5-flash-lite";
 const TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS || 20_000);
 
 function client(): GoogleGenAI {
@@ -118,20 +138,63 @@ function parseOrNull(raw: string | undefined): unknown {
 
 type Part = { text: string } | { inlineData: { mimeType: string; data: string } };
 
-/**
- * One JSON-constrained call, with a single repair retry.
- *
- * The retry exists because schema-constrained decoding can still truncate or
- * emit a stray token. We retry exactly once with an explicit instruction and
- * temperature 0, then fail loudly rather than looping and burning quota.
- */
-async function generateJson<T>(opts: {
+interface GenerateOpts<T> {
+  /** The primary model. FALLBACK_MODEL is tried after it when worthwhile. */
   model: string;
   system: string;
   schema: Schema;
   parts: Part[];
   validate: (v: unknown) => T | null;
-}): Promise<T> {
+}
+
+/**
+ * The primary model first, then the fallback — but only for failures a
+ * different model could plausibly avoid. Each model gets its own repair retry.
+ */
+async function generateJson<T>(opts: GenerateOpts<T>): Promise<T> {
+  // A Set, so a fallback configured to equal the primary means "no fallback".
+  const models = [...new Set([opts.model, FALLBACK_MODEL])];
+
+  for (let i = 0; ; i++) {
+    try {
+      return await generateJsonWith(models[i], opts);
+    } catch (err) {
+      const next = models[i + 1];
+      if (!next || !(err instanceof AppError) || !shouldTryFallback(err)) throw err;
+      console.warn(`[ai] ${models[i]} failed with ${err.code}; trying ${next}`);
+    }
+  }
+}
+
+/**
+ * Whether a failure from the primary model is worth one attempt on the
+ * fallback. Only asked when a fallback exists; returning false surfaces the
+ * primary's error to the user unchanged.
+ */
+function shouldTryFallback(err: AppError): boolean {
+  switch (err.code) {
+    // Overloaded (503), out of quota (429, which is counted per model),
+    // retired, or unable to produce valid JSON: all specific to one model, so
+    // a different one is likely to answer.
+    case "UPSTREAM_ERROR":
+    case "MODEL_NOT_FOUND":
+    case "BAD_MODEL_JSON":
+      return true;
+    // Not TIMEOUT: a second 20s wait in a taxi is worse than a quick "try
+    // again". Not NO_API_KEY: the fallback uses the same key.
+    default:
+      return false;
+  }
+}
+
+/**
+ * One JSON-constrained call to one model, with a single repair retry.
+ *
+ * The retry exists because schema-constrained decoding can still truncate or
+ * emit a stray token. We retry exactly once with an explicit instruction,
+ * then fail loudly rather than looping and burning quota.
+ */
+async function generateJsonWith<T>(model: string, opts: GenerateOpts<T>): Promise<T> {
   const ai = client();
 
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -141,13 +204,15 @@ async function generateJson<T>(opts: {
     let raw: string | undefined;
     try {
       const res = await ai.models.generateContent({
-        model: opts.model,
+        model,
         contents: [{ role: "user", parts }],
         config: {
           systemInstruction: opts.system,
           responseMimeType: "application/json",
           responseSchema: opts.schema,
-          temperature: attempt === 0 ? 0.3 : 0,
+          // No temperature override. Gemini 3 models are tuned for the default
+          // of 1.0, and Google warns that lower values can make them loop or
+          // degrade. The response schema is what keeps the output stable.
           abortSignal: AbortSignal.timeout(TIMEOUT_MS),
         },
       });
@@ -169,7 +234,7 @@ async function generateJson<T>(opts: {
       if (/404|not[ _]?found|does not exist|is not supported/i.test(msg)) {
         throw new AppError(
           "MODEL_NOT_FOUND",
-          `Your API key cannot use "${opts.model}".`,
+          `Your API key cannot use "${model}".`,
           502,
         );
       }
@@ -178,7 +243,7 @@ async function generateJson<T>(opts: {
       // to be at fault.
       throw new AppError(
         "UPSTREAM_ERROR",
-        `Gemini call failed (model: ${opts.model}).`,
+        `Gemini call failed (model: ${model}).`,
         502,
       );
     }

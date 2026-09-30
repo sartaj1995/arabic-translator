@@ -69,15 +69,20 @@ Console → APIs & Services → Credentials → Create credentials → API key, 
 
 All have working defaults; see `.env.example`.
 
-- `GEMINI_TEXT_MODEL` — model for Speak mode. Defaults to `gemini-2.5-flash`.
+- `GEMINI_TEXT_MODEL` — model for Speak mode. Defaults to `gemini-3.8-flash`.
 - `GEMINI_AUDIO_MODEL` — model for Listen mode. Must accept audio input.
-  Defaults to `gemini-2.5-flash`, which is multimodal.
+  Defaults to `gemini-3.8-flash`, which is multimodal.
+- `GEMINI_FALLBACK_MODEL` — tried when the primary model is overloaded or
+  unavailable. Defaults to `gemini-3.5-flash-lite`. Set it to the primary's
+  name to switch the fallback off.
 - `AI_TIMEOUT_MS` — abort a model call after this long. Default `20000`.
 
-Both model defaults are **pinned to a GA model on purpose**. An earlier version
-defaulted to the floating alias `gemini-flash-latest`, which does not resolve on
-every API key and left the deployed app failing on every request. If you want a
-newer model, set it explicitly.
+Both model defaults are **pinned to a stable model on purpose**. An earlier
+version defaulted to the floating alias `gemini-flash-latest`, which does not
+resolve on every API key and left the deployed app failing on every request. The
+next pin, `gemini-2.5-flash`, broke the same way once Google limited the 2.5
+models to keys that had already used them. If you want a newer model, set it
+explicitly.
 
 If the app reports **"That model is not available on your API key"**, list what
 your key can actually reach and pick one:
